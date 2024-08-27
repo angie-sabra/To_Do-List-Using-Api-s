@@ -8,6 +8,10 @@ const {
     updateTodo,
     deleteTodo
 } = require('./sevices/todoService.js');
+//hello there 
+app.get('/', (req, res) => {
+    res.send('Welcome to the To-Do List API!');
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;

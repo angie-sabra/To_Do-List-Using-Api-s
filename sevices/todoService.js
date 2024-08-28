@@ -40,6 +40,17 @@ function loadTodosFromWorksheet() {
     });
 }
 
+// function addTodo(task, priority) {
+//     const newTodo = { task, priority, completed: false };
+//     todos.push(newTodo);
+//     worksheet.addRow(newTodo);
+
+//     return workbook.xlsx.writeFile('todos.xlsx')
+//         .then(() => newTodo)
+//         .catch(err => {
+//             throw new Error('Error saving the task to the file: ' + err.message);
+//         });
+// }
 function addTodo(task, priority) {
     const newTodo = { task, priority, completed: false };
     todos.push(newTodo);
@@ -48,9 +59,17 @@ function addTodo(task, priority) {
     return workbook.xlsx.writeFile('todos.xlsx')
         .then(() => newTodo)
         .catch(err => {
+            console.error('Error saving the task to the file:', err.message);  // Improved logging
             throw new Error('Error saving the task to the file: ' + err.message);
         });
 }
+
+
+
+
+
+
+
 
 function updateTodo(task, updatedDetails) {
     let todo = todos.find(t => t.task === task);

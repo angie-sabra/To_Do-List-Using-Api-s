@@ -1,5 +1,5 @@
 function loadTodos() {
-    fetch('http://localhost:3000/todos') 
+    fetch('http://localhost:3000/READ_TODOS') 
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -13,9 +13,19 @@ function loadTodos() {
         })
         .catch(error => console.error('Error loading todos:', error));
 }
+
+
+
+
+
+
 const submitButton= document.getElementById("submit");
 submitButton.onclick = event => {
+    console.log("hello");
     event.preventDefault();
+    const todoInput = document.getElementById("user-input");
+    const selectedPriority = document.getElementById("priority-select");
+
     if (todoInput.value.trim() === "") {
         alert("You didn't enter your to-do list");
         todoInput.value = "";
@@ -26,7 +36,7 @@ submitButton.onclick = event => {
     const task = todoInput.value;
     const priority = selectedPriority.value;
 
-    fetch('http://localhost:3000/todos', { 
+    fetch('http://localhost:3000/CREATE_TODOS', {  // Updated endpoint
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
